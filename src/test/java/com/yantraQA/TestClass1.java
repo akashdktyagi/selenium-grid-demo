@@ -8,12 +8,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,30 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 @Log4j2
-public class TestClass1 {
-
-    WebDriver driver;
-
-    @Before
-    public void beforeTest() throws MalformedURLException {
-        String nodeURL = "http:localhost:4444/wd/hub";
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
-        LoggingPreferences prefs = new LoggingPreferences();
-        prefs.enable(LogType.BROWSER, Level.ALL);
-        prefs.enable(LogType.DRIVER, Level.ALL);
-        prefs.enable(LogType.PERFORMANCE, Level.ALL);
-        desiredCapabilities.setBrowserName("chrome");
-        desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS,prefs);
-
-        driver = new RemoteWebDriver(new URL(nodeURL),desiredCapabilities);
-
-//        driver = new RemoteWebDriver(new URL(""), DesiredCapabilities.chrome());
-    }
-
-    @After
-    public void afterTest(){
-        driver.quit();
-    }
+public class TestClass1 extends TestBase{
 
     @Test
     public void TestClass1_Test1() throws MalformedURLException {
@@ -60,6 +31,11 @@ public class TestClass1 {
         WebElement email = driver.findElement(By.id("email"));
         log.info("Email");
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         email.sendKeys("akashdktyagi@gmail.com");
         log.info("enter email: akashdktyagi@gmail.com");
         driver.findElement(By.id("enterimg")).click();
@@ -77,6 +53,7 @@ public class TestClass1 {
         driver.quit();
     }
 
+
     @Test
     public void TestClass1_Test2() throws MalformedURLException {
         String url = "http://demo.automationtesting.in/Index.html";
@@ -90,6 +67,11 @@ public class TestClass1 {
 
         WebElement email = driver.findElement(By.id("email"));
         log.info("Email");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         email.sendKeys("akashdktyagi@gmail.com");
         log.info("enter email: akashdktyagi@gmail.com");
@@ -119,6 +101,11 @@ public class TestClass1 {
         driver.get(url);
         log.info("Browser Navigated. URL: " + url);
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         WebElement email = driver.findElement(By.id("email"));
         log.info("Email");
 
@@ -155,9 +142,16 @@ public class TestClass1 {
 
         email.sendKeys("akashdktyagi@gmail.com");
         log.info("enter email: akashdktyagi@gmail.com");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         driver.findElement(By.id("enterimg")).click();
         String titleAfter = driver.getTitle();
         log.info("title of the page: " + titleAfter);
+
 
         if (titleAfter.equalsIgnoreCase("Register")){
             log.info("Test Case is Passed");
@@ -187,6 +181,11 @@ public class TestClass1 {
         email.sendKeys("akashdktyagi@gmail.com");
         log.info("enter email: akashdktyagi@gmail.com");
         driver.findElement(By.id("enterimg")).click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String titleAfter = driver.getTitle();
         log.info("title of the page: " + titleAfter);
 
